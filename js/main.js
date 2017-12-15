@@ -23,7 +23,7 @@ const contact = {
 
 new Yavir({
 	el: 'app',
-	mode: 'hash', // or 'history'
+	mode: 'history', // or 'hash'
 	components: [
 		app,
 		main,
