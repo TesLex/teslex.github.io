@@ -1,31 +1,31 @@
-const app = {
-	selector: 'app',
-	template: '<view></view>'
-};
-
 const main = {
 	route: '/',
 	selector: 'main-page',
-	template: page('/pages/main.html')
+	template: () => page('/pages/main.html')
 };
 
 const portfolio = {
 	route: '/portfolio',
 	selector: 'portfolio-page',
-	template: page('/pages/portfolio.html')
+	template: () => page('/pages/portfolio/portfolio.html'),
+	components: [
+		{
+			selector: 'portfolio-cards',
+			template: () => page('/pages/portfolio/cards.html'),
+		}
+	]
 };
 
 const contact = {
 	route: '/contact',
 	selector: 'contact-page',
-	template: page('/pages/contact.html')
+	template: () => page('/pages/contact.html')
 };
 
 new Yavir({
 	el: 'app',
-	mode: 'history', // or 'hash'
+	mode: 'history',
 	components: [
-		app,
 		main,
 		portfolio,
 		contact
