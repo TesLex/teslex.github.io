@@ -1,0 +1,52 @@
+background-color = white
+color = #333
+
+body
+	background-color background-color
+	margin 0
+	padding 0
+	bottom 0
+
+a
+	cursor pointer
+	text-decoration none
+
+.logo
+	display block
+	transform translate(-50%, -50%)
+	position absolute
+	top 50%
+	left 50%
+	max-width 12em
+	transition filter .2s ease-in-out, transform .2s ease-in-out
+	filter opacity(80%)
+
+	&:hover
+		transform translate(-50%, -70%)
+		filter drop-shadow(1px 2px 0 rgba(73, 116, 255, 0.5)) opacity(100%)
+
+.menu
+	position fixed
+	bottom 0
+	width 100%
+	overflow hidden
+	border-top 1px solid #aaa
+	background-color whitesmoke
+
+	.mid
+		text-align center
+		justify-content center
+		float center
+
+	a
+		color #333
+		text-decoration none
+		padding 15px
+		display inline-block
+		transition color .2s ease-in-out
+
+		&:hover
+			color: #000
+
+	.active-route
+		color #000

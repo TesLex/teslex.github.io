@@ -1,38 +1,50 @@
 body {
-    background-color: #f5f5f5;
-    position: absolute;
-
-    left: 0;
-    width: 100%;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
 }
-
-.vertical-center {
-    margin-left: auto;
-    margin-right: auto;
-
-    width: 624px;
-
-    position: relative;
-    top: 50%;
-    transform: translateY(65%);
+a {
+  cursor: pointer;
+  text-decoration: none;
 }
-
-button {
-    border-radius: 5em;
-    margin: 3px;
+.logo {
+  display: block;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 12em;
+  transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
+  filter: opacity(80%);
 }
-
-.card {
-    background-color: #FAFAFA;
+.logo:hover {
+  transform: translate(-50%, -70%);
+  filter: drop-shadow(1px 2px 0 rgba(73,116,255,0.5)) opacity(100%);
 }
-
-.title {
-    padding-bottom: 0;
-    margin-bottom: 0;
+.menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid #aaa;
+  background-color: #f5f5f5;
 }
-
-.subtitle {
-    text-align: center;
-    padding-top: 0;
-    margin-top: 0;
+.menu .mid {
+  text-align: center;
+  justify-content: center;
+  float: center;
+}
+.menu a {
+  color: #333;
+  text-decoration: none;
+  padding: 15px;
+  display: inline-block;
+  transition: #333 0.2s ease-in-out;
+}
+.menu a:hover {
+  color: #000;
+}
+.menu .active-route {
+  color: #000;
 }
