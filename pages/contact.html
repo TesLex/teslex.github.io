@@ -1,5 +1,20 @@
 <title load>TesLex :: Contact</title>
 
+<style load>
+	a {
+		text-decoration: none;
+		text-after-overflow: none;
+		color: blue;
+	}
+</style>
+
 <div class="contact">
-	Email:
+	Email: <a href="mailto:{{email}}">{{email}}</a>
 </div>
+
+<script load>
+	$data = {
+		email: 'devid.kohut@gmail.com',
+		expexes: 'https://expexes.github.io'
+	}
+</script>

@@ -24,8 +24,13 @@ const contact = {
 const portfolio = {
 	route: '/portfolio',
 	selector: 'portfolio-page',
-	animate: 'animated fadeIn',
 	template: () => page('/pages/portfolio.html')
+};
+
+const projects = {
+	route: '/projects',
+	selector: 'projects-page',
+	template: () => page('/pages/projects.html')
 };
 
 new Yavir({
@@ -36,6 +41,7 @@ new Yavir({
 		navbar,
 		home,
 		contact,
-		portfolio
+		portfolio,
+		projects
 	]
 }).run();

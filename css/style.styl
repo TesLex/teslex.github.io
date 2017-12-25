@@ -1,5 +1,13 @@
 background-color = white
 color = #333
+border = 1px solid #aaa
+
+*
+	-moz-user-select none
+	-khtml-user-select none
+	-webkit-user-select none
+	-ms-user-select none
+	user-select none
 
 body
 	background-color background-color
@@ -13,9 +21,7 @@ body
 a
 	cursor pointer
 	text-decoration none
-
-a['onclick']
-	pointer-events none
+	color blue
 
 .logo
 	display block
@@ -24,10 +30,9 @@ a['onclick']
 	top 50%
 	left 50%
 	max-width 12em
-	transition filter .5s ease-out,
-	filter opacity(80%)
+	transition filter .2s ease-out
 
-	&:hover
+	&hover
 		filter drop-shadow(1px 2px 0 rgba(73, 116, 255, 0.5)) opacity(100%)
 
 .slogan
@@ -44,7 +49,7 @@ a['onclick']
 	bottom 0
 	width 100%
 	overflow hidden
-	border-top 1px solid #aaa
+	border-top border
 	background-color whitesmoke
 
 	.mid
@@ -59,12 +64,14 @@ a['onclick']
 		display inline-block
 		transition color .2s ease-in-out
 
-		&:hover
-			color: #000
+		@media screen and (max-width 360px)
+			padding 15px 5px
+
+		&hover
+			color #000
 
 	.active-route
 		color #000
-
 
 .contact
 	display block
@@ -72,3 +79,60 @@ a['onclick']
 	position absolute
 	top 50%
 	left 50%
+
+.portfolio, .projects
+	display flex
+	justify-content center
+	align-items center
+	flex-direction row
+	flex-wrap wrap
+
+.card
+	margin 10px
+	padding 10px
+	width 300px
+	max-height 200px
+	border border
+	border-radius 2px
+
+	.title
+		//letter-spacing 15
+		padding-bottom 5px
+		margin 10px 10px 0 10px
+		border-bottom 1px solid #ccc
+		text-transform uppercase
+
+	.content
+		font-size smaller
+		text-indent 10px
+		margin 0 10px
+		padding 10px 0
+
+	.footer
+		margin 0 10px
+		padding 5px 5px 0 0
+		text-align right
+
+		a
+			color #333
+			text-decoration-line underline
+
+			&hover
+				color #000
+
+			&active
+				color blue
+
+	transition box-shadow .3s ease
+
+	&hover
+		box-shadow 1px 1px 1px #ddd
+
+.left
+	float left
+
+.right
+	float right
+
+.center
+	float center

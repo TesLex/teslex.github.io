@@ -4,22 +4,22 @@
 	}
 </style>
 
-<div class="portfolio animated fadeIn">
+<div class="projects animated fadeIn">
 </div>
 
 <script load>
 
-	let portfolio = JSON.parse(page('/data/portfolio.json'));
-	let el = x('.portfolio');
+	let projects = JSON.parse(page('/data/projects.json'));
+	let el = x('.projects');
 
-	portfolio.forEach(p => {
+	projects.forEach(p => {
 		el.html(
 			el.html() +
 			'<div class="card">' +
 			'<div class="title">' + p.title + '</div>' +
 			'<p class="content">' + p.description + '</p>' +
 			'<div class="footer">' +
-			'<a href="' + p.github + '">Web Site</a>' +
+			'<a href="' + p.github + '">GitHub</a>' +
 			'</div>' +
 			'</div>'
 		);

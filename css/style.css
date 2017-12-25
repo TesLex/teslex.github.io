@@ -1,3 +1,10 @@
+* {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 body {
   background-color: #fff;
   margin: 0;
@@ -9,9 +16,7 @@ body {
 a {
   cursor: pointer;
   text-decoration: none;
-}
-a['onclick'] {
-  pointer-events: none;
+  color: #00f;
 }
 .logo {
   display: block;
@@ -20,9 +25,9 @@ a['onclick'] {
   top: 50%;
   left: 50%;
   max-width: 12em;
-  transition: filter 0.5s ease-out, filter opacity(80%);
+  transition: filter 0.2s ease-out;
 }
-.logo:hover {
+.logohover {
   filter: drop-shadow(1px 2px 0 rgba(73,116,255,0.5)) opacity(100%);
 }
 .slogan {
@@ -54,7 +59,12 @@ a['onclick'] {
   display: inline-block;
   transition: #333 0.2s ease-in-out;
 }
-.menu a:hover {
+@media screen and (max-width: 360px) {
+  .menu a {
+    padding: 15px 5px;
+  }
+}
+.menu ahover {
   color: #000;
 }
 .menu .active-route {
@@ -66,4 +76,60 @@ a['onclick'] {
   position: absolute;
   top: 50%;
   left: 50%;
+}
+.portfolio,
+.projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.card {
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+  max-height: 200px;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  transition: box-shadow 0.3s ease;
+}
+.card .title {
+  padding-bottom: 5px;
+  margin: 10px 10px 0 10px;
+  border-bottom: 1px solid #ccc;
+  text-transform: uppercase;
+}
+.card .content {
+  font-size: smaller;
+  text-indent: 10px;
+  margin: 0 10px;
+  padding: 10px 0;
+}
+.card .footer {
+  margin: 0 10px;
+  padding: 5px 5px 0 0;
+  text-align: right;
+}
+.card .footer a {
+  color: #333;
+  text-decoration-line: underline;
+}
+.card .footer ahover {
+  color: #000;
+}
+.card .footer aactive {
+  color: #00f;
+}
+.cardhover {
+  box-shadow: 1px 1px 1px #ddd;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.center {
+  float: center;
 }
