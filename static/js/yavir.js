@@ -56,6 +56,10 @@ class X {
 		return this.exec(e => e.appendChild(el));
 	}
 
+	replace(what, to) {
+		return this.exec(e => e.innerHTML = e.innerHTML.replace(what, to));
+	}
+
 	exec(callback) {
 		if (typeof this.el !== 'object') {
 			document.querySelectorAll(this.el).forEach(e => {
@@ -102,10 +106,10 @@ class Yavir {
 			window.eval(tpl.substr(start + 13, end - 13));
 		}
 
-		x(component.selector).html(x(component.selector).html().replace(new RegExp('{{([a-zA-Z0-9]+)}}', 'g'), (q, val) => {
+		x(component.selector).replace(new RegExp('{{([a-zA-Z0-9]+)}}', 'g'), (q, val) => {
 			val = $data[val];
 			return typeof val === 'function' ? val() : val
-		}));
+		});
 
 		x('title[load]').exec(x => window.document.title = x.innerHTML);
 

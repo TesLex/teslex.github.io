@@ -90,6 +90,13 @@ var X = function () {
 			});
 		}
 	}, {
+		key: 'replace',
+		value: function replace(what, to) {
+			return this.exec(function (e) {
+				return e.innerHTML = e.innerHTML.replace(what, to);
+			});
+		}
+	}, {
 		key: 'exec',
 		value: function exec(callback) {
 			if (_typeof(this.el) !== 'object') {
@@ -143,10 +150,10 @@ var Yavir = function () {
 				window.eval(tpl.substr(start + 13, end - 13));
 			}
 
-			x(component.selector).html(x(component.selector).html().replace(new RegExp('{{([a-zA-Z0-9]+)}}', 'g'), function (q, val) {
+			x(component.selector).replace(new RegExp('{{([a-zA-Z0-9]+)}}', 'g'), function (q, val) {
 				val = $data[val];
 				return typeof val === 'function' ? val() : val;
-			}));
+			});
 
 			x('title[load]').exec(function (x) {
 				return window.document.title = x.innerHTML;
