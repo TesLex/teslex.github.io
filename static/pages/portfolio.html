@@ -1,4 +1,4 @@
-<title load>TesLex :: Projects</title>
+<title load>TesLex :: Portfolio</title>
 
 <style>
 	a {
@@ -6,38 +6,38 @@
 	}
 </style>
 
-<div class="projects animated fadeIn">
+<div class="portfolio animated fadeIn">
 </div>
 
 <script load>
 
-	let projects = JSON.parse(page('/data/projects.json'));
-	let el = x('.projects');
+	let portfolio = JSON.parse(page('/static/data/portfolio.json'));
+	let el = x('.portfolio');
 
-	projects.forEach(p => {
+	portfolio.forEach(p => {
 		el.html(
 			el.html() +
 			'<div class="card">' +
 			'<div class="title">' + p.title + '</div>' +
 			'<p class="content">' + p.description + '</p>' +
 			'<div class="footer">' +
-			'<a target="_blank" href="' + p.github + '">GitHub</a>' +
+			'<a target="_blank" href="' + p.website + '">Web Site</a>' +
 			'</div>' +
 			'</div>'
 		);
 	});
 
-	x('.menu').fix(e => {
+	x('.menu').exec(e => {
 		e.style.transition = 'transform .1s ease-out'
 	});
 
 	x(window).on('scroll', e => {
 		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight)
-			x('.menu').fix(e => {
+			x('.menu').exec(e => {
 				e.style.transform = 'translateY(50px)'
 			});
 		else
-			x('.menu').fix(e => {
+			x('.menu').exec(e => {
 				e.style.transform = 'translateY(0)'
 			});
 	});

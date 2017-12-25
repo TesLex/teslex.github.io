@@ -5,35 +5,46 @@ const main = {
 
 const navbar = {
 	selector: 'navbar',
-	template: () => page('/pages/navbar.html')
+	template: () => page('/static/pages/navbar.html')
 };
 
 const home = {
 	route: '/',
 	selector: 'home-page',
-	template: () => page('/pages/home.html')
+	template: () => page('/static/pages/home.html')
 };
 
 const contact = {
 	route: '/contact',
 	selector: 'contact-page',
-	animate: 'animated fadeIn',
-	template: () => page('/pages/contact.html')
+	template: () => page('/static/pages/contact.html')
 };
 
 const portfolio = {
 	route: '/portfolio',
 	selector: 'portfolio-page',
-	template: () => page('/pages/portfolio.html')
+	template: () => page('/static/pages/portfolio.html')
 };
 
 const projects = {
 	route: '/projects',
 	selector: 'projects-page',
-	template: () => page('/pages/projects.html')
+	template: () => page('/static/pages/projects.html')
 };
 
-new Yavir({
+// const user = {
+// 	route: '/user/{id}',
+// 	selector: 'projects-page',
+// 	template:
+// 	`
+// 	<script load>
+// 		log($route);
+// 	</script>
+//
+// 	`s
+// };
+
+const app = new Yavir({
 	el: 'view',
 	mode: 'history',
 	components: [
@@ -42,6 +53,9 @@ new Yavir({
 		home,
 		contact,
 		portfolio,
-		projects
+		projects,
+		// user
 	]
-}).run();
+});
+
+app.run();
