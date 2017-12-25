@@ -3,24 +3,34 @@ body {
   margin: 0;
   padding: 0;
   bottom: 0;
+  color: #333;
 }
 a {
   cursor: pointer;
   text-decoration: none;
 }
+a['onclick'] {
+  pointer-events: none;
+}
 .logo {
   display: block;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -70%);
   position: absolute;
   top: 50%;
   left: 50%;
   max-width: 12em;
-  transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
-  filter: opacity(80%);
+  transition: filter 0.5s ease-out, filter opacity(80%);
 }
 .logo:hover {
-  transform: translate(-50%, -70%);
   filter: drop-shadow(1px 2px 0 rgba(73,116,255,0.5)) opacity(100%);
+}
+.slogan {
+  text-transform: uppercase;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: rotate(-12.5grad) skewX(-12.5grad) translate(-50%, 60%);
 }
 .menu {
   position: fixed;
@@ -47,4 +57,11 @@ a {
 }
 .menu .active-route {
   color: #000;
+}
+.contact {
+  display: block;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }

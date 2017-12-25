@@ -275,6 +275,8 @@ function url(href) {
 		history.pushState({}, '', href);
 		window.dispatchEvent(new Event('popstate'));
 	}
+
+	return false
 }
 
 /* End SPA Part */
