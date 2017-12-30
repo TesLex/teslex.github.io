@@ -72,14 +72,14 @@ var X = function () {
 		key: 'style',
 		value: function style(_style) {
 			return this.exec(function (e) {
-				return e.style(_style);
+				return e.style = _style;
 			});
 		}
 	}, {
 		key: 'createElement',
-		value: function createElement(el) {
+		value: function createElement(el, content) {
 			return this.exec(function (e) {
-				return e.createElement(el);
+				return e.appendChild(document.createElement(el)).innerHTML = content;
 			});
 		}
 	}, {
@@ -94,6 +94,13 @@ var X = function () {
 		value: function replace(what, to) {
 			return this.exec(function (e) {
 				return e.innerHTML = e.innerHTML.replace(what, to);
+			});
+		}
+	}, {
+		key: 'append',
+		value: function append(content) {
+			return this.exec(function (e) {
+				return e.innerHTML = e.innerHTML + content;
 			});
 		}
 	}, {
@@ -126,7 +133,7 @@ var Yavir = function () {
 		value: function match(path, route) {
 			var names = path.match(new RegExp('{([a-zA-Z0-9]+)}', 'g'));
 
-			path = path.replace(new RegExp('{([a-zA-Z]+)}', 'g'), '(.+)');
+			path = path.replace(new RegExp('{([a-zA-Z]+)}', 'g'), '(.+)').replace(new RegExp('{([a-zA-Z]+)\((.+)\)}', 'g'), /\2/);
 
 			var params = route.match(new RegExp('^' + path + '$'));
 
@@ -146,18 +153,22 @@ var Yavir = function () {
 
 			x(component.selector).html(tpl);
 
-			if (start > 0 && end > 0) {
-				window.eval(tpl.substr(start + 13, end - 13));
-			}
+			if (start > 0 && end > 0) window.eval(tpl.substr(start + 13, end - 13));else if (component.script) component.script();
 
-			x(component.selector).replace(new RegExp('{{([a-zA-Z0-9]+)}}', 'g'), function (q, val) {
-				val = $data[val];
+			x(component.selector).replace(new RegExp('{{([a-zA-Z0-9 ]+)}}', 'g'), function (q, val) {
+				val = $data[val.trim()];
 				return typeof val === 'function' ? val() : val;
 			});
 
-			x('title[load]').exec(function (x) {
-				return window.document.title = x.innerHTML;
-			});
+			if (component.title) {
+				window.document.title = component.title;
+			} else {
+				x('title[load]').exec(function (x) {
+					return window.document.title = x.innerHTML;
+				});
+			}
+
+			if (component.style) x(component.selector).createElement('style', component.style);
 
 			if (component.components !== null && "undefined" !== typeof component.components) {
 				component.components.forEach(function (c) {
@@ -185,7 +196,7 @@ var Yavir = function () {
 
 				this.renderComponent(found);
 
-				// x('.' + found.route.replace('/', '_')).addClass('active-route')
+				x('.' + found.selector.replace('-', '_')).addClass('active-route');
 			} else {
 				x('view').html('404');
 			}

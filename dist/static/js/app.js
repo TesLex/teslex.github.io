@@ -44,22 +44,20 @@ var projects = {
 	}
 };
 
-// const user = {
-// 	route: '/user/{id}',
-// 	selector: 'projects-page',
-// 	template:
-// 	`
-// 	<script load>
-// 		log($route);
-// 	</script>
-//
-// 	`s
-// };
+var user = {
+	route: '/user/{id}',
+	selector: 'projects-page',
+	template: '\n\t<div>{{ user }}</div>\n\t',
+
+	script: function script() {
+		$data['user'] = $route.id;
+	}
+};
 
 var app = new Yavir({
 	el: 'view',
-	mode: 'history',
-	components: [main, navbar, home, contact, portfolio, projects]
+	mode: 'hash',
+	components: [main, navbar, home, contact, portfolio, projects, user]
 });
 
 app.run();

@@ -45,11 +45,11 @@ class X {
 	}
 
 	style(style) {
-		return this.exec(e => e.style(style))
+		return this.exec(e => e.style = style)
 	}
 
-	createElement(el) {
-		return this.exec(e => e.createElement(el));
+	createElement(el, content) {
+		return this.exec(e => e.appendChild(document.createElement(el)).innerHTML = content);
 	}
 
 	appendChild(el) {
@@ -58,6 +58,10 @@ class X {
 
 	replace(what, to) {
 		return this.exec(e => e.innerHTML = e.innerHTML.replace(what, to));
+	}
+
+	append(content) {
+		return this.exec(e => e.innerHTML = e.innerHTML + content)
 	}
 
 	exec(callback) {
@@ -81,7 +85,9 @@ class Yavir {
 	match(path, route) {
 		let names = path.match(new RegExp('{([a-zA-Z0-9]+)}', 'g'));
 
-		path = path.replace(new RegExp('{([a-zA-Z]+)}', 'g'), '(.+)');
+		path = path
+			.replace(new RegExp('{([a-zA-Z]+)}', 'g'), '(.+)')
+			.replace(new RegExp('{([a-zA-Z]+)\((.+)\)}', 'g'), /\2/);
 
 		let params = route.match(new RegExp('^' + path + '$'));
 
@@ -102,16 +108,24 @@ class Yavir {
 
 		x(component.selector).html(tpl);
 
-		if (start > 0 && end > 0) {
+		if (start > 0 && end > 0)
 			window.eval(tpl.substr(start + 13, end - 13));
-		}
+		else if (component.script)
+			component.script();
 
-		x(component.selector).replace(new RegExp('{{([a-zA-Z0-9]+)}}', 'g'), (q, val) => {
-			val = $data[val];
+		x(component.selector).replace(new RegExp('{{([a-zA-Z0-9 ]+)}}', 'g'), (q, val) => {
+			val = $data[val.trim()];
 			return typeof val === 'function' ? val() : val
 		});
 
-		x('title[load]').exec(x => window.document.title = x.innerHTML);
+		if (component.title) {
+			window.document.title = component.title;
+		} else {
+			x('title[load]').exec(x => window.document.title = x.innerHTML);
+		}
+
+		if (component.style)
+			x(component.selector).createElement('style', component.style);
 
 		if (component.components !== null && "undefined" !== typeof component.components) {
 			component.components.forEach(function (c) {
@@ -136,7 +150,7 @@ class Yavir {
 
 			this.renderComponent(found);
 
-			// x('.' + found.route.replace('/', '_')).addClass('active-route')
+			x('.' + found.selector.replace('-', '_')).addClass('active-route')
 		} else {
 			x('view').html('404')
 		}
