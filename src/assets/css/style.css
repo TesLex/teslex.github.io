@@ -1,0 +1,135 @@
+* {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+body {
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #00f;
+}
+.logo {
+  display: block;
+  transform: translate(-50%, -70%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 12em;
+  transition: filter 0.2s ease-out;
+}
+.logohover {
+  filter: drop-shadow(1px 2px 0 rgba(73,116,255,0.5)) opacity(100%);
+}
+.slogan {
+  text-transform: uppercase;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  transform: rotate(-12.5grad) skewX(-12.5grad) translate(-38%, 60%);
+}
+.menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid #aaa;
+  background-color: #f5f5f5;
+}
+.menu .mid {
+  text-align: center;
+  justify-content: center;
+  float: center;
+}
+.menu a {
+  color: #333;
+  text-decoration: none;
+  padding: 15px;
+  display: inline-block;
+  transition: #333 0.2s ease-in-out;
+}
+@media screen and (max-width: 360px) {
+  .menu a {
+    padding: 15px 5px;
+  }
+}
+.menu ahover {
+  color: #000;
+}
+.menu .active-route {
+  color: #000;
+}
+.contact {
+  display: block;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.portfolio,
+.projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.card {
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+  max-height: 200px;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  transition: box-shadow 0.3s ease;
+}
+.card .title {
+  padding-bottom: 5px;
+  margin: 10px 10px 0 10px;
+  border-bottom: 1px solid #ccc;
+  text-transform: uppercase;
+}
+.card .content {
+  font-size: smaller;
+  text-indent: 10px;
+  margin: 0 10px;
+  padding: 10px 0;
+}
+.card .footer {
+  margin: 0 10px;
+  padding: 5px 5px 0 0;
+  text-align: right;
+}
+.card .footer a {
+  color: #333;
+  text-decoration-line: underline;
+}
+.card .footer ahover {
+  color: #000;
+}
+.card .footer aactive {
+  color: #00f;
+}
+.cardhover {
+  box-shadow: 1px 1px 1px #ddd;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.center {
+  float: center;
+}
