@@ -47,7 +47,7 @@ const user = {
 
 const app = new Yavir({
 	el: 'view',
-	mode: 'history',
+	mode: 'hash',
 	components: [
 		main,
 		navbar,

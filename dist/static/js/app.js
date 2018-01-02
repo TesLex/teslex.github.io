@@ -56,7 +56,7 @@ var user = {
 
 var app = new Yavir({
 	el: 'view',
-	mode: 'history',
+	mode: 'hash',
 	components: [main, navbar, home, contact, portfolio, projects, user]
 });
 
