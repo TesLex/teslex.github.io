@@ -18,7 +18,9 @@ var X = function () {
 	function X(el) {
 		_classCallCheck(this, X);
 
-		this.el = el;
+		this.el = [];
+
+		if (typeof el !== 'function') (typeof el === 'undefined' ? 'undefined' : _typeof(el)) === 'object' ? this.el.push(el) : this.el = document.querySelectorAll(el);else el();
 	}
 
 	_createClass(X, [{
@@ -104,15 +106,49 @@ var X = function () {
 			});
 		}
 	}, {
-		key: 'exec',
-		value: function exec(callback) {
-			if (_typeof(this.el) !== 'object') {
-				document.querySelectorAll(this.el).forEach(function (e) {
-					callback(e);
+		key: 'remove',
+		value: function remove(el) {
+			var _this = this;
+
+			if (typeof el !== 'undefined') {
+				return this.exec(function (e) {
+					return e.removeChild(_this.selectFirst(el));
 				});
 			} else {
-				callback(this.el);
+				return this.exec(function (e) {
+					return e.parentElement.removeChild(e);
+				});
 			}
+		}
+	}, {
+		key: 'clear',
+		value: function clear() {
+			return this.exec(function (e) {
+				return e.innerHTML = '';
+			});
+		}
+	}, {
+		key: 'selectFirst',
+		value: function selectFirst(selector) {
+			return document.querySelector(selector);
+		}
+	}, {
+		key: 'exec',
+		value: function exec(callback) {
+
+			// log(this.el);
+
+			this.el.forEach(function (e) {
+				callback(e);
+			});
+
+			// if (typeof this.el !== 'object') {
+			// 	document.querySelectorAll(this.el).forEach((e => {
+			// 		callback(e)
+			// 	}));
+			// } else {
+			// 	callback(this.el)
+			// }
 
 			return x(this.el);
 		}
@@ -151,11 +187,11 @@ var Yavir = function () {
 			var start = tpl.indexOf('<script load>');
 			var end = tpl.substr(start, tpl.length).indexOf('</script>');
 
-			x(component.selector).html(tpl);
+			x('div#' + component.selector).html(tpl);
 
 			if (start > 0 && end > 0) window.eval(tpl.substr(start + 13, end - 13));else if (component.script) component.script();
 
-			x(component.selector).replace(new RegExp('{{([a-zA-Z0-9 ]+)}}', 'g'), function (q, val) {
+			x('div#' + component.selector).replace(new RegExp('{{([a-zA-Z0-9 ]+)}}', 'g'), function (q, val) {
 				val = $data[val.trim()];
 				return typeof val === 'function' ? val() : val;
 			});
@@ -168,7 +204,7 @@ var Yavir = function () {
 				});
 			}
 
-			if (component.style) x(component.selector).createElement('style', component.style);
+			if (component.style) x('div#' + component.selector).createElement('style', component.style);
 
 			if (component.components !== null && "undefined" !== typeof component.components) {
 				component.components.forEach(function (c) {
@@ -179,32 +215,37 @@ var Yavir = function () {
 	}, {
 		key: 'renderActive',
 		value: function renderActive() {
-			var _this = this;
+			var _this2 = this;
 
 			x('*').removeClass('active-route');
 
 			var found = this.app.components.find(function (e) {
 				if ($mode === 'hash') {
-					return typeof e.route === 'undefined' ? false : _this.match(e.route, window.location.hash.substr(1, window.location.hash.length));
+					return typeof e.route === 'undefined' ? false : _this2.match(e.route, window.location.hash.substr(1, window.location.hash.length));
 				} else {
-					return typeof e.route === 'undefined' ? false : _this.match(e.route, window.location.pathname);
+					return typeof e.route === 'undefined' ? false : _this2.match(e.route, window.location.pathname);
 				}
 			});
 
 			if (found) {
-				x(this.app.el).html('<' + found.selector + '>' + '</' + found.selector + '>');
+				x('div#' + this.app.el).clear();
+
+				var el = document.createElement('div');
+				el.id = found.selector;
+
+				document.getElementById(this.app.el).appendChild(el);
 
 				this.renderComponent(found);
 
 				x('.' + found.selector.replace('-', '_')).addClass('active-route');
 			} else {
-				x('view').html('404');
+				x('div#view').html('404');
 			}
 		}
 	}, {
 		key: 'run',
 		value: function run() {
-			var _this2 = this;
+			var _this3 = this;
 
 			$mode = this.app.mode;
 
@@ -220,7 +261,8 @@ var Yavir = function () {
 				for (var _iterator = this.app.components[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 					var e = _step.value;
 
-					if (e.route === undefined) x(e.selector).html(typeof e.template === 'function' ? e.template() : e.template);
+					if (e.route === undefined) x('div#' + e.selector).html(typeof e.template === 'function' ? e.template() : e.template);
+					;
 				}
 			} catch (err) {
 				_didIteratorError = true;
@@ -242,7 +284,7 @@ var Yavir = function () {
 			this.renderActive();
 
 			x(window).on($mode === 'hash' ? 'hashchange' : 'popstate', function () {
-				_this2.renderActive();
+				_this3.renderActive();
 			});
 		}
 	}]);

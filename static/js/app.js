@@ -1,6 +1,6 @@
 const main = {
 	selector: 'app',
-	template: '<view></view><navbar></navbar>'
+	template: '<div id="view"></div><div id="navbar"></div>'
 };
 
 const navbar = {
@@ -36,7 +36,7 @@ const user = {
 	route: '/user/{id}',
 	selector: 'projects-page',
 	template:
-	`
+		`
 	<div>{{ user }}</div>
 	`,
 
@@ -47,7 +47,7 @@ const user = {
 
 const app = new Yavir({
 	el: 'view',
-	mode: 'hash',
+	mode: 'history',
 	components: [
 		main,
 		navbar,

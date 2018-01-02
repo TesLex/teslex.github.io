@@ -7,8 +7,14 @@ function x(el) {
 }
 
 class X {
+
 	constructor(el) {
-		this.el = el
+		this.el = [];
+
+		if (typeof el !== 'function')
+			(typeof el === 'object') ? this.el.push(el) : this.el = document.querySelectorAll(el);
+		else
+			el();
 	}
 
 	on(type, callback) {
@@ -64,20 +70,44 @@ class X {
 		return this.exec(e => e.innerHTML = e.innerHTML + content)
 	}
 
-	exec(callback) {
-		if (typeof this.el !== 'object') {
-			document.querySelectorAll(this.el).forEach(e => {
-				callback(e)
-			});
+	remove(el) {
+		if (typeof el !== 'undefined') {
+			return this.exec(e => e.removeChild(this.selectFirst(el)))
 		} else {
-			callback(this.el)
+			return this.exec(e => e.parentElement.removeChild(e))
 		}
+	}
+
+	clear() {
+		return this.exec(e => e.innerHTML = '')
+	}
+
+	selectFirst(selector) {
+		return document.querySelector(selector);
+	}
+
+	exec(callback) {
+
+		// log(this.el);
+
+		this.el.forEach(e => {
+			callback(e);
+		});
+
+		// if (typeof this.el !== 'object') {
+		// 	document.querySelectorAll(this.el).forEach((e => {
+		// 		callback(e)
+		// 	}));
+		// } else {
+		// 	callback(this.el)
+		// }
 
 		return x(this.el)
 	}
 }
 
 class Yavir {
+
 	constructor(el) {
 		this.app = el;
 	}
@@ -106,14 +136,14 @@ class Yavir {
 		let start = tpl.indexOf('<script load>');
 		let end = tpl.substr(start, tpl.length).indexOf('</script>');
 
-		x(component.selector).html(tpl);
+		x('div#' + component.selector).html(tpl);
 
 		if (start > 0 && end > 0)
 			window.eval(tpl.substr(start + 13, end - 13));
 		else if (component.script)
 			component.script();
 
-		x(component.selector).replace(new RegExp('{{([a-zA-Z0-9 ]+)}}', 'g'), (q, val) => {
+		x('div#' + component.selector).replace(new RegExp('{{([a-zA-Z0-9 ]+)}}', 'g'), (q, val) => {
 			val = $data[val.trim()];
 			return typeof val === 'function' ? val() : val
 		});
@@ -125,7 +155,7 @@ class Yavir {
 		}
 
 		if (component.style)
-			x(component.selector).createElement('style', component.style);
+			x('div#' + component.selector).createElement('style', component.style);
 
 		if (component.components !== null && "undefined" !== typeof component.components) {
 			component.components.forEach(function (c) {
@@ -146,13 +176,18 @@ class Yavir {
 		});
 
 		if (found) {
-			x(this.app.el).html('<' + found.selector + '>' + '</' + found.selector + '>');
+			x('div#' + this.app.el).clear();
+
+			let el = document.createElement('div');
+			el.id = found.selector;
+
+			document.getElementById(this.app.el).appendChild(el);
 
 			this.renderComponent(found);
 
 			x('.' + found.selector.replace('-', '_')).addClass('active-route')
 		} else {
-			x('view').html('404')
+			x('div#view').html('404')
 		}
 	}
 
@@ -165,7 +200,8 @@ class Yavir {
 
 		for (const e of this.app.components) {
 			if (e.route === undefined)
-				x(e.selector).html(typeof e.template === 'function' ? e.template() : e.template);
+				x('div#' + e.selector).html(typeof e.template === 'function' ? e.template() : e.template);
+			;
 		}
 
 		if (typeof this.app.path === 'undefined') this.app.path = '/';

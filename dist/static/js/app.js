@@ -2,7 +2,7 @@
 
 var main = {
 	selector: 'app',
-	template: '<view></view><navbar></navbar>'
+	template: '<div id="view"></div><div id="navbar"></div>'
 };
 
 var navbar = {
@@ -56,7 +56,7 @@ var user = {
 
 var app = new Yavir({
 	el: 'view',
-	mode: 'hash',
+	mode: 'history',
 	components: [main, navbar, home, contact, portfolio, projects, user]
 });
 
