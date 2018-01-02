@@ -67,7 +67,7 @@ a {
 .menu ahover {
   color: #000;
 }
-.menu .active-route {
+.menu .router-link-active {
   color: #000;
 }
 .contact {

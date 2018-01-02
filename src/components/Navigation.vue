@@ -10,7 +10,13 @@
 
 <script>
   export default {
-    name: "navigation"
+    name: "navigation",
+
+    methods: {},
+
+    created() {
+      //
+    }
   }
 </script>
 
