@@ -6,7 +6,7 @@
         {{ p.description }}
       </p>
       <div class="footer">
-        <a target="_blank" :href="p.github">GitHub</a>
+        <a target="_blank" :href="p.website">Go</a>
       </div>
     </div>
   </div>

@@ -121,7 +121,7 @@ a {
 .card .footer aactive {
   color: #00f;
 }
-.cardhover {
+.card:hover {
   box-shadow: 1px 1px 1px #ddd;
 }
 .left {
