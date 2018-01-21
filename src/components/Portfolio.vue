@@ -13,17 +13,23 @@
 </template>
 
 <script>
-  import PortfolioData from '@/assets/data/portfolio'
+  import Config from "../config";
 
   export default {
     name: 'Portfolio',
     data() {
       return {
-        portfolio: PortfolioData
+        portfolio: []
       }
+    }, created() {
+      this.getPortfolio();
     },
-    created() {
-      //
+    methods: {
+      getPortfolio() {
+        this.$http.get(Config.API_URL + '/portfolio').then(response => {
+          this.portfolio = response.body;
+        });
+      }
     }
   }
 </script>

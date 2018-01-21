@@ -1,7 +1,7 @@
 <template>
   <div>
     <img class="logo" src="../assets/img/logo.png">
-    <h3 class="slogan">Maximum innovations</h3>
+    <h3 class="slogan">{{ slogan }}</h3>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
     name: 'Home',
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        slogan: 'New generation of.. all'
       }
     }
   }

@@ -13,17 +13,24 @@
 </template>
 
 <script>
-  import ProjectsData from '@/assets/data/projects'
+  import Config from '../config'
 
   export default {
     name: 'Projects',
     data() {
       return {
-        projects: ProjectsData
+        projects: []
       }
     },
     created() {
-      //
+      this.getProjects();
+    },
+    methods: {
+      getProjects() {
+        this.$http.get(Config.API_URL + '/projects').then(response => {
+          this.projects = response.body;
+        });
+      }
     }
   }
 </script>
