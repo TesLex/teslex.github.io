@@ -1,6 +1,9 @@
+/* --- TesLex Tech. 2018 --- */
+/* --- by @expexes --- */
+
 background-color = white
 color = #333
-border = 1px solid #aaa
+border = 1px solid #ccc
 
 *
   -moz-user-select none
@@ -8,12 +11,11 @@ border = 1px solid #aaa
   -webkit-user-select none
   -ms-user-select none
   user-select none
+  font-family 'Ubuntu', sans-serif
 
 body
   background-color background-color
   margin 0
-  padding 0
-  bottom 0
   color color
 
   font-family 'Poppins', sans-serif
@@ -21,41 +23,36 @@ body
 a
   cursor pointer
   text-decoration none
-  color blue
+  color #2196f3
 
-.logo
-  display block
-  transform translate(-50%, -70%)
-  position absolute
-  top 50%
-  left 50%
-  max-width 12em
-  transition filter .2s ease-out
+.top
+  display flex
+  align-items center
+  justify-content center
+  height 100vh
 
-  &hover
-    filter drop-shadow(1px 2px 0 rgba(73, 116, 255, 0.5)) opacity(100%)
+  div
+    text-align center
 
-.slogan
-  text-transform uppercase
-  display block
-  position absolute
-  top 50%
-  left 50%
-  width 300px
-  transform rotate(-12.5grad) skewX(-12.5grad) translate(-38%, 60%)
+    .logo
+      max-width 12em
 
-.menu
-  position fixed
-  bottom 0
+    .slogan
+      text-transform uppercase
+      display block
+      transform rotate(-13grad) skewX(-13grad) translateY(-20px)
+
+/* --- NAVIGATION --- */
+
+.navbar
+  //position fixed
+  //bottom 0
+  margin-top -50px
   width 100%
   overflow hidden
   border-top border
-  background-color whitesmoke
-
-  .mid
-    text-align center
-    justify-content center
-    float center
+  border-bottom border
+  background-color rgba(245, 245, 245, 0.9)
 
   a
     color color
@@ -67,66 +64,98 @@ a
     @media screen and (max-width 360px)
       padding 15px 5px
 
-    &hover
+    &:hover
       color #000
 
-  .router-link-active
-    color #000
+  .mid
+    text-align center
+    justify-content center
+    float center
 
-.contact
-  display block
-  transform translate(-50%, -50%)
-  position absolute
-  top 50%
-  left 50%
+.active
+  color #000
 
-.portfolio, .projects
+/* --- END NAVIGATION --- */
+
+/* --- CARDS --- */
+
+.cards
   display flex
   justify-content center
   align-items center
   flex-direction row
   flex-wrap wrap
 
-.card
-  margin 10px
-  padding 10px
-  width 300px
-  max-height 200px
-  border border
-  border-radius 2px
+  .card
+    margin 10px
+    padding 10px
+    max-width 300px
+    min-width 250px
+    max-height 200px
+    border border
+    border-radius 2px
 
-  .title
-    //letter-spacing 15
-    padding-bottom 5px
-    margin 10px 10px 0 10px
-    border-bottom 1px solid #ccc
-    text-transform uppercase
+    .title
+      padding-bottom 5px
+      margin 10px 10px 0 10px
+      border-bottom 1px solid #ccc
+      text-transform uppercase
 
-  .content
-    font-size smaller
-    text-indent 10px
-    margin 0 10px
-    padding 10px 0
+    .content
+      font-size smaller
+      text-indent 10px
+      margin 0 10px
+      padding 10px 0
 
-  .footer
-    margin 0 10px
-    padding 5px 5px 0 0
-    text-align right
+    .footer
+      margin 0 10px
+      padding 5px 5px 0 0
+      text-align right
 
-    a
-      color #333
-      text-decoration-line underline
+      a
+        color #333
+        text-decoration-line underline
 
-      &hover
-        color #000
+        &:hover
+          color #000
 
-      &active
-        color blue
+        &:active
+          color blue
 
-  transition box-shadow .3s ease
+    transition box-shadow .3s ease
 
-  &:hover
-    box-shadow 1px 1px 1px #ddd
+    &:hover
+      box-shadow 1px 1px 1px #ddd
+
+/* --- END CARDS --- */
+
+/* --- CONTENT --- */
+
+.content
+  padding-top 60px
+
+  .center
+    text-align center
+    justify-content center
+    float center
+
+  > .title
+    display flex
+    align-items center
+    justify-content center
+    transform translateY(40vh)
+
+.sticky
+  position fixed
+  top 0
+  width 100%
+  margin-top 0
+  border-bottom border
+  border-top 0
+  transition border .3s ease-in-out
+
+//.sticky + .content
+//	padding-top 60px
 
 .left
   float left
@@ -136,3 +165,80 @@ a
 
 .center
   float center
+
+/* --- END CONTENT --- */
+
+/* --- HELPERS --- */
+
+.bg-red
+  background-color #e74c3c
+
+.bg-green
+  background-color #2ecc71
+
+.bg-blue
+  background-color #2196F3
+
+.bg-teal
+  background-color #34495e
+
+.bg-gray
+  background #ecf0f1
+
+.bg-white
+  background #fafafa
+
+.transparent-1
+  opacity 10
+
+.bor-b
+  border-bottom border
+
+.bor-t
+  border-top border
+
+.bor-l
+  border-left border
+
+.bor-r
+  border-right border
+
+.ann
+  transition all .2s ease-in-out
+
+.shadow-info
+  color #aaa
+
+/* --- END HELPERS --- */
+
+#toTop
+  display none
+  position fixed
+  bottom 30px
+  right 30px
+  z-index 99
+  border border
+  outline none
+  background-color rgba(245, 245, 245, 0.9)
+  color color()
+  cursor pointer
+  height 50px
+  width 50px
+  border-radius 25em
+
+  box-shadow 0 2px 1px #ddd
+
+  transition all .2s ease-in-out
+
+#toTop:hover
+  background-color #ccc
+
+#who-we-are, #projects, #portfolio, #contact
+  display flex
+  align-items center
+  justify-content center
+  height 100vh
+
+  @media screen and (max-width 360px)
+    margin 0 30px
+

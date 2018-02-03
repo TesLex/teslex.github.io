@@ -1,14 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import Projects from '@/components/Projects'
-import Portfolio from '@/components/Portfolio'
-import Contact from '@/components/Contact'
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
+  base: '/dev',
   routes: [
     {
       path: '/',
@@ -16,19 +14,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/projects',
-      name: 'Projects',
-      component: Projects
-    },
-    {
-      path: '/portfolio',
-      name: 'Portfolio',
-      component: Portfolio
-    },
-    {
-      path: '/contact',
-      name: 'Contact',
-      component: Contact
+      path: '*',
+      name: '404',
+      component: Home
     }
   ]
 })

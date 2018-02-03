@@ -1,0 +1,20 @@
+{
+  "uk": {
+    "slogan": "Technologies homunkulus",
+    "links": {
+      "who-we-are": "Шо як?",
+      "portfolio": "Пруфи",
+      "projects": "Чай",
+      "contact": "Мобіла"
+    }
+  },
+  "en": {
+    "slogan": "Technologies homunkulus",
+    "links": {
+      "who-we-are": "What?",
+      "portfolio": "Proofs",
+      "projects": "Tea",
+      "contact": "Contact"
+    }
+  }
+}

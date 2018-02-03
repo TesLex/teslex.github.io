@@ -1,9 +1,12 @@
 <template>
-  <div class="menu">
-    <div class="mid">
-      <router-link to="/projects">Projects</router-link>
-      <a href="//web.teslex.tech">Web Studio</a>
-      <router-link to="/contact">Contact</router-link>
+  <div id="navigation">
+    <div class="navbar">
+      <div class="mid">
+        <a href="#who-we-are" class="wwa_page">Чо як?</a>
+        <a href="#portfolio" class="portfolio_page">Пруфи</a>
+        <a href="#projects" class="projects_page">Чай</a>
+        <a href="#contact" class="contact_page">Мобіла</a>
+      </div>
     </div>
   </div>
 </template>
@@ -12,11 +15,7 @@
   export default {
     name: "navigation",
 
-    methods: {},
-
-    created() {
-      //
-    }
+    methods: {}
   }
 </script>
 

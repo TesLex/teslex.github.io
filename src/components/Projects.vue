@@ -1,14 +1,31 @@
 <template>
-  <div class="projects">
-    <div class="card" v-for="p in projects">
-      <div class="title">{{ p.title }}</div>
-      <p class="content">
-        {{ p.description }}
-      </p>
-      <div class="footer">
-        <a target="_blank" :href="p.github">GitHub</a>
-      </div>
+  <div class="content">
+    <div class="title">
+      <h2>Чай</h2>
     </div>
+
+    <section id="projects">
+      <div class="cards">
+        <div class="card">
+          <div class="title">Yavir</div>
+          <p class="content">
+            Simple SPA JavaScript Framework
+          </p>
+          <div class="footer">
+            <a target="_blank" href="https://github.com/expexes/Yavir.js">GitHub</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="title">Solovey</div>
+          <p class="content">
+            PHP Framework
+          </p>
+          <div class="footer">
+            <a target="_blank" href="https://github.com/expexes/Solovey">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 

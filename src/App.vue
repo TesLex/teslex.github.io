@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view class="animated fadeIn"/>
-    <navigation></navigation>
   </div>
 </template>
 
@@ -17,7 +16,6 @@
 </script>
 
 <style>
-  @import "assets/css/animate.css";
   @import "assets/css/style.css";
 
 </style>

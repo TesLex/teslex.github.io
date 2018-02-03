@@ -1,14 +1,22 @@
 <template>
-  <div class="portfolio">
-    <div class="card" v-for="p in portfolio">
-      <div class="title">{{ p.title }}</div>
-      <p class="content">
-        {{ p.description }}
-      </p>
-      <div class="footer">
-        <a target="_blank" :href="p.website">Go</a>
-      </div>
+  <div class="content">
+    <div class="title">
+      <h2>Пруфи</h2>
     </div>
+
+    <section id="portfolio">
+      <div class="cards">
+        <div class="card">
+          <div class="title">Ecolife</div>
+          <p class="content">
+            Інтернет-магазин масла від TOM
+          </p>
+          <div class="footer">
+            <a target="_blank" href="http://ecolife.lviv.ua">ecolife.lviv.ua</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 

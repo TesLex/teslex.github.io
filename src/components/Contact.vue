@@ -1,6 +1,16 @@
 <template>
-  <div class="contact">
-    Email: <a :href="'mailto:' + email">{{email}}</a>
+  <div class="content">
+    <section id="contact">
+      <div class="left">
+        <div class="center">
+          <h2>Связь</h2>
+        </div>
+
+        Telegram: <a href="http://t.me/expexes">@expexes</a>
+        <br>
+        Mobile: <a href="tel:+380633905791">+380633905791 <a class="shadow-info">(можемо не підняти)</a></a>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -9,12 +19,10 @@
     name: "contact",
     data: function () {
       return {
-        email: 'devid.kohut@gmail.com'
       }
     }
   }
 </script>
 
 <style scoped>
-
 </style>
